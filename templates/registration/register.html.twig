@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AtypikHouse|Inscription{% endblock %}
+
+
+{% block body %}
+{% include 'shared/header.html.twig'%}
+<div class="page-wrappers login-body full-row bg-gray">
+    <div class="login-wrapper">
+        <div class="container">
+            <div class="loginbox">
+                <div class="login-right">
+                    <div class="login-right-wrap">
+                        <h1>Inscription</h1>
+                        <p class="account-subtitle">Accéder à notre tableau de bord</p>
+
+                        {# Display form errors here if any #}
+                        {{ form_errors(registrationForm) }}
+
+                        <!-- Form -->
+                        {{ form_start(registrationForm, {'attr': {'method': 'post', 'enctype': 'multipart/form-data'}}) }}
+                            <div class="form-group">
+                                {{ form_row(registrationForm.name, {'attr': {'class': 'form-control', 'placeholder': 'Votre Nom*'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Votre Email*'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(registrationForm.phone, {'attr': {'class': 'form-control', 'placeholder': 'Votre Téléphone*', 'maxlength': '10'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Votre Mot de Passe*'}}) }}
+                            </div>
+                            <button class="btn btn-success" name="reg" value="Register" type="submit">Inscription</button>
+                        {{ form_end(registrationForm) }}
+
+                        <div class="login-or">
+                            <span class="or-line"></span>
+                            <span class="span-or">ou</span>
+                        </div>
+
+                        <!-- Social Login -->
+                        <!-- <div class="social-login">
+                            <span>Register with</span>
+                            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="google"><i class="fab fa-google"></i></a>
+                            <a href="#" class="facebook"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="google"><i class="fab fa-instagram"></i></a>
+                        </div> -->
+                        <!-- /Social Login -->
+
+                        <div class="text-center dont-have">Vous avez déjà un compte? <a href="{{ path('app_login') }}">Connexion</a></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'shared/footer.html.twig'%}
+
+{% endblock %}
