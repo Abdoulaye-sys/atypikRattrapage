@@ -96,54 +96,53 @@
 
 {# Nos Hebergement #}
 <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-secondary double-down-line text-center mb-4">Nos hébergements</h2>
-            </div>
-            <div class="col-md-12">
-                <div class="row">
-                    {% for property in properties %}
-                        <div class="col-md-6 col-lg-4">
-                            <div class="featured-thumb hover-zoomer mb-4">
-                                <div class="overlay-black overflow-hidden position-relative">
-                                    {# <a href="{{ path('', {'pid': property.id}) }}"> #}
-                                        <img src="{{ asset('../../images/' ~ property.pimage) }}" alt="pimage" id="propertyImage{{ property.id }}">
-                                    </a>
-                                    <div class="featured bg-success text-white">Nouveaux</div>
-                                    <div class="sale bg-success text-white text-capitalize">A {{ property.type }}</div>
-                                    <div class="price text-primary"><b>{{ property.price }} € / nuit</b><span class="text-white">{{ property.size }} m²</span></div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-secondary double-down-line text-center mb-4">Nos hébergements</h2>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                {% for property in properties %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="featured-thumb hover-zoomer mb-4">
+                            <div class="overlay-black overflow-hidden position-relative">
+                                <a href="{{ path('app_property_details', {'id': property.id}) }}">
+                                    <img src="{{ asset('../../images/' ~ property.pimage) }}" alt="pimage" id="propertyImage{{ property.id }}">
+                                </a>
+                                <div class="price text-primary"><b>{{ property.price }} € / nuit</b><span class="text-white">{{ property.size }} m²</span></div>
+                            </div>
+                            <div class="featured-thumb-data shadow-one">
+                                <div class="p-3">
+                                    <h5 class="text-secondary hover-text-success mb-2 text-capitalize">
+                                        <a href="{{ path('app_property_details', {'id': property.id}) }}">{{ property.title }}</a>
+                                    </h5>
+                                    <span class="location text-capitalize">
+                                        <i class="fas fa-map-marker-alt text-success"></i> {{ property.location }}
+                                    </span>
                                 </div>
-                                <div class="featured-thumb-data shadow-one">
-                                    <div class="p-3">
-                                        <h5 class="text-secondary hover-text-success mb-2 text-capitalize">
-                                            {# <a href="{{ path('', {'pid': property.id}) }}">{{ property.title }}</a> #}
-                                        </h5>
-                                        <span class="location text-capitalize">
-                                            <i class="fas fa-map-marker-alt text-success"></i> {{ property.location }}
-                                        </span>
+                                <!-- ... (rest of your property details) ... -->
+                                <div class="p-4 d-inline-block w-100">
+                                    <div class="float-right">
+                                        <i class="far fa-calendar-alt text-success mr-1"></i> {{ property.date|date('d-m-Y') }}
                                     </div>
-                                    <div class="bg-gray quantity px-4 pt-4">
-                                        <ul>
-                                            <li><span>{{ property.size }}</span> m²</li>
-                                            <li><span>{{ property.bedroom }}</span> Lits</li>
-                                            <li><span>{{ property.bathroom }}</span> Thermes</li>
-                                        </ul>
-                                    </div>
-                                    <div class="p-4 d-inline-block w-100">
-                                        <div class="float-right">
-                                            <i class="far fa-calendar-alt text-success mr-1"></i> {{ property.date|date('d-m-Y') }}
-                                        </div>
-                                        {# <a href="{{ path('', {'pid': property.id}) }}" class="btn btn-primary">Voir détails</a> #}
-                                    </div>
+                                    <a href="{{ path('app_property_details', {'id': property.id}) }}" class="btn btn-primary">Voir détails</a>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                </div>
+                        </div>                  
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
+</div>
 {# End Nos Hebergement #}
+
+<script>
+    function redirectToDetailsPage(detailsPath) {
+        window.location.href = detailsPath;
+    }
+</script>
+
 
 
 
