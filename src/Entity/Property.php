@@ -1,8 +1,10 @@
 <?php
-
+// src/Entity/Property.php
 namespace App\Entity;
 
 use App\Repository\PropertyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -44,11 +46,19 @@ class Property
     #[ORM\Column(length: 255)]
     private ?string $state = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $pimage = null;
-
+    
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    #[ORM\OneToMany(mappedBy: 'property', targetEntity: PropertyFeature::class, cascade: ["persist", "remove"])]
+    private Collection $propertyFeatures;
+
+    public function __construct()
+    {
+        $this->propertyFeatures = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -195,6 +205,36 @@ class Property
     public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PropertyFeature>
+     */
+    public function getPropertyFeatures(): Collection
+    {
+        return $this->propertyFeatures;
+    }
+
+    public function addPropertyFeature(PropertyFeature $propertyFeature): static
+    {
+        if (!$this->propertyFeatures->contains($propertyFeature)) {
+            $this->propertyFeatures->add($propertyFeature);
+            $propertyFeature->setProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removePropertyFeature(PropertyFeature $propertyFeature): static
+    {
+        if ($this->propertyFeatures->removeElement($propertyFeature)) {
+            // set the owning side to null (unless already changed)
+            if ($propertyFeature->getProperty() === $this) {
+                $propertyFeature->setProperty(null);
+            }
+        }
 
         return $this;
     }

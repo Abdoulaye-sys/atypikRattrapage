@@ -20,8 +20,8 @@ class HomeController extends AbstractController
         $isUserLoggedIn = $this->getUser() !== null;
 
         return $this->render('home/home.html.twig', [
-            'properties' => $properties,
             'isUserLoggedIn' => $isUserLoggedIn,
+            'properties' => $properties,
         ]);
     }
 }

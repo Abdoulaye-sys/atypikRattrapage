@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AtypikHouse{% endblock %}
+
+{% block body %}
+    {# templates/submit_property/submit_property.html.twig #}
+    {% include 'shared/header.html.twig' %}
+
+    <div class="full-row">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="text-secondary double-down-line text-center">Soumettre la propriété</h2>
+                </div>
+            </div>
+            <div class="row p-5 bg-white">
+                {{ form_start(form) }}
+                <div class="description">
+                    <h5 class="text-secondary">Informations de base</h5><hr>
+
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.pcontent) }}
+                    {{ form_row(form.type) }}
+                    {{ form_row(form.bedroom) }}
+                    {{ form_row(form.bathroom) }}
+                    {{ form_row(form.size) }}
+                    {{ form_row(form.price) }}
+                    {{ form_row(form.location) }}
+                    {{ form_row(form.city) }}
+                    {{ form_row(form.state) }}
+                    {{ form_row(form.date) }}
+                </div>
+                {{ form_end(form) }}
+
+                <!-- Affichage de l'image -->
+                {% if form.vars.value.pimage %}
+                    <img src="{{ app.request.getBasePath() }}/images/{{ form.vars.value.pimage }}" alt="Image de la propriété">
+                {% endif %}
+
+                <input type="submit" value="Soumettre la propriété" class="btn btn-info" name="add" style="margin-left:200px;">
+            </div>
+        </div>
+    </div>
+
+    {% include 'shared/footer.html.twig' %}
+
+{% endblock %}
