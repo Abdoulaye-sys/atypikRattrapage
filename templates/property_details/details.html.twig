@@ -32,6 +32,9 @@
                                 <li><span class="text-secondary">{{ property.size }}</span> m²</li>
                                 <li><span class="text-secondary">{{ property.bedroom }}</span> chambre</li>
                                 <li><span class="text-secondary">{{ property.bathroom }}</span> salle de bain</li>
+                                {% for feature in property.propertyFeatures %}
+                                    <li><span class="text-secondary">{{ feature.description }}</span>{{ feature.name }}</li>
+                                {% endfor %}
                             </ul>
                         </div>
 

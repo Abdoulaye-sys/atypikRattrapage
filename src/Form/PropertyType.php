@@ -14,6 +14,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use App\Entity\PropertyFeature;
+use Doctrine\DBAL\Types\IntegerType;
 
 class PropertyType extends AbstractType
 {
@@ -69,15 +71,22 @@ class PropertyType extends AbstractType
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
             ]) 
+            // Modifiez votre formulaire pour utiliser le nouveau type imbriqué
             ->add('propertyFeatures', CollectionType::class, [
-                'entry_type' => TextType::class, // Vous pouvez utiliser un autre type ici selon vos besoins
+                'entry_type' => PropertyFeatureType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'label' => 'Caractéristiques supplémentaires',
-            ])           
+                'prototype' => true,
+                'prototype_name' => '__name__',
+                // Autres options...
+            ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Soumettre la propriété',
+                'label' => 'Valider la proposition', // Modifier le libellé ici
+                'attr' => [
+                    'class' => 'btn btn-success btn-lg d-none', // Ajouter la classe d-none pour cacher le bouton
+                    'style' => 'border-radius: 30px;',
+                ],
             ]);
     }
 

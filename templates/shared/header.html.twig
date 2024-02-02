@@ -59,12 +59,6 @@
 <title>Atypik House</title>
 </head>
 <body>
-<!-- Bannière de cookies en pop-up -->
-<!-- <div class="cookie-banner">
-        <p>En utilisant ce site, vous acceptez l'utilisation de cookies pour améliorer votre expérience.</p>
-        <button onclick="acceptCookies()">J'accepte</button>
-</div> -->
-
 <div id="page-wrapper">
     <div class="row"> 
 
@@ -108,23 +102,15 @@
                                 <li class="nav-item dropdown"> <a class="nav-link" href="{{ path('app_home') }}" role="button" aria-haspopup="true" aria-expanded="false">Accueil</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="{{path('app_about')}}">Qui sommes-nous</a> </li>
                                 <li class="nav-item"> <a class="nav-link" href="{{path('app_contact')}}">Contact</a> </li>
-                                <li class="nav-item"> <a class="nav-link" href="{{path('app_property')}}">Propriétés</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="{{path('app_property')}}">Nos Hébergements</a> </li>
                                 <li class="nav-item"> <a class="nav-link"href="{{path('app_presse')}}">Espace presse</a> </li>
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon Compte</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item"> <a class="nav-link" href=>Profil</a> </li>
-                                            <li class="nav-item"> <a class="nav-link" href=>Votre propriété</a> </li>
-                                            <li class="nav-item"> <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a> </li>
-                                        </ul>
-                                    </li>
                                 {% else %}
                                     <li class="nav-item"> <a class="nav-link" href="{{ path('app_login') }}">Connexion/S'inscrire</a> </li>
                                 {% endif %}
                             </ul>
 
-                            <a class="btn btn-success d-none d-xl-block" style="border-radius:30px;" href="{{ path('app_submit_property')}}">Soumettre la propriété</a>
+                                <a class="btn btn-success d-none d-xl-block" style="border-radius:30px;" href="{{ path('app_submit_property')}}">Proposer un logement</a>
                         </div>
                     </nav>
                 </div>

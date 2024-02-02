@@ -16,6 +16,12 @@ class PropertyFeature
     #[ORM\ManyToOne(inversedBy: 'propertyFeatures')]
     private ?property $property = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column]
+    private ?string $description = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +35,30 @@ class PropertyFeature
     public function setProperty(?property $property): static
     {
         $this->property = $property;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
