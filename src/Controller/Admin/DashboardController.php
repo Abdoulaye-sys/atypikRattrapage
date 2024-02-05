@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Property;
+use App\Entity\PropertyFeature;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -51,6 +52,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Blog'),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
             MenuItem::linkToCrud('Logement', 'fa fa-home', Property::class),
+            MenuItem::linkToCrud('Add', 'fa fa-plus', PropertyFeature::class),
             MenuItem::linkToLogout('Logout', 'fa fa-exit'),
         ];
     }}

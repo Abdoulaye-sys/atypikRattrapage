@@ -1,20 +1,96 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BookingController!{% endblock %}
+{% block title %}AtypikHouse | Réservation{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    {% include 'shared/header.html.twig' %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="full-row">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="property-details">
+                        <h2>{{ property.title }}</h2>
+                        <!-- Affichage de l'image -->
+                        <img src="{{ asset('../../images/' ~ property.pimage) }}" alt="{{ property.title }}">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/abdou/OneDrive/Desktop/Atypikhouse/src/Controller/BookingController.php'|file_link(0) }}">src/Controller/BookingController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/abdou/OneDrive/Desktop/Atypikhouse/templates/booking/index.html.twig'|file_link(0) }}">templates/booking/index.html.twig</a></code></li>
-    </ul>
-</div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <span class="mb-sm-20 d-block text-capitalize">
+                                    <i class="fas fa-map-marker-alt text-success font-12"></i>
+                                    &nbsp;{{ property.location }}
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-success text-left h5 my-2 text-md-right" id="prix">{{ property.price }}€</div>
+                                <div class="text-left text-md-right">Prix</div>
+                            </div>
+                        </div>
+
+                        <!-- ... Autres détails ... -->
+
+                        <!-- Affichez le formulaire de réservation uniquement s'il n'est pas encore soumis ou s'il n'est pas valide -->
+                        {{ form_start(form) }}
+                        {{ form_row(form.DateArrive, { 'attr': {'class': 'date-arrive'} }) }}
+                        {{ form_row(form.DateDepart, { 'attr': {'class': 'date-depart'} }) }}
+                        <!-- Ajoutez d'autres champs au besoin -->
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
+                    </div>
+
+                    <div class="mt-4">
+                        {% if form.vars.valid %}
+                            <!-- Ajoutez ici le bouton de paiement ou de confirmation -->
+                        <a href="{{ path('app_stripe', {'pid': property.id}) }}" class="btn btn-success">
+                            Payer maintenant
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- ... Autre contenu ... -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Définir une fonction pour calculer le prix en fonction des dates sélectionnées
+            function calculerPrix() {
+                // Récupérer les dates d'arrivée et de départ
+                var dateArrive = new Date($('.date-arrive').val());
+                var dateDepart = new Date($('.date-depart').val());
+
+                // Si les dates ne sont pas valides, afficher le prix initial et masquer le bouton de paiement
+                if (isNaN(dateArrive.getTime()) || isNaN(dateDepart.getTime()) || dateDepart <= dateArrive) {
+                    $('#prix').text('{{ property.price }}€');
+                    return;
+                }
+
+                // Calculer la différence en jours
+                var differenceEnJours = Math.ceil((dateDepart - dateArrive) / (1000 * 60 * 60 * 24));
+
+                // Récupérer le prix initial
+                var prixInitial = parseFloat('{{ property.price }}');
+
+                // Calculer le prix total
+                var prixTotal = differenceEnJours * prixInitial;
+
+                // Afficher le prix total dans l'élément avec l'id 'prix'
+                $('#prix').text(prixTotal.toFixed(2) + '€');
+            }
+
+            // Appeler la fonction de calcul lorsque les dates changent
+            $('.date-arrive, .date-depart').change(function() {
+                calculerPrix();
+            });
+
+            // Appeler la fonction au chargement de la page
+            calculerPrix();
+        });
+    </script>
+
+    {% include 'shared/footer.html.twig' %}
 {% endblock %}
