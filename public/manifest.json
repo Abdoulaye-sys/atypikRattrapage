@@ -1,0 +1,21 @@
+{
+   
+    "short_name": "ATH",
+    
+    "name": "ATYPIK HOUSE",
+    
+    "icons": [
+      {
+        "src": "ice.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+   ],
+   
+    "start_url": "/",	
+    
+    "background_color": "#000000",
+    
+    "display": "standalone",
+    "theme_color": "#ff0000"
+  }
