@@ -14,20 +14,23 @@ class Hebergement
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)] // Ajout de "nullable: true" pour permettre la nullabilité
     private ?string $nom = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateDisponibilite = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $prix = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateDepart = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateArrive = null;
+
+    #[ORM\Column]
+    private ?bool $paiementEffectue = null;
 
     public function getId(): ?int
     {
@@ -90,6 +93,18 @@ class Hebergement
     public function setDateArrive(\DateTimeInterface $dateArrive): static
     {
         $this->dateArrive = $dateArrive;
+
+        return $this;
+    }
+
+    public function isPaiementEffectue(): ?bool
+    {
+        return $this->paiementEffectue;
+    }
+
+    public function setPaiementEffectue(bool $paiementEffectue): static
+    {
+        $this->paiementEffectue = $paiementEffectue;
 
         return $this;
     }
