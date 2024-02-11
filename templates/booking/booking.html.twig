@@ -26,26 +26,20 @@
                                 <div class="text-left text-md-right">Prix</div>
                             </div>
                         </div>
+                            <!-- ... Autres détails ... -->
 
-                        <!-- ... Autres détails ... -->
+                            <!-- Affichez le formulaire de réservation uniquement s'il n'est pas encore soumis ou s'il n'est pas valide -->
+                            {{ form_start(form) }}
+                            {{ form_row(form.DateArrive, { 'attr': {'class': 'date-arrive'} }) }}
+                            {{ form_row(form.DateDepart, { 'attr': {'class': 'date-depart'} }) }}
+                            <!-- Ajoutez d'autres champs au besoin -->
 
-                        <!-- Affichez le formulaire de réservation uniquement s'il n'est pas encore soumis ou s'il n'est pas valide -->
-                        {{ form_start(form) }}
-                        {{ form_row(form.DateArrive, { 'attr': {'class': 'date-arrive'} }) }}
-                        {{ form_row(form.DateDepart, { 'attr': {'class': 'date-depart'} }) }}
-                        <!-- Ajoutez d'autres champs au besoin -->
-                        {{ form_widget(form) }}
-                        {{ form_end(form) }}
-                    </div>
+                            <div class="mt-4">
+                                {{ form_widget(form, { 'label': 'Valider et Payer', 'attr': {'class': 'btn btn-success'} }) }}
+                            </div>
 
-                    <div class="mt-4">
-                        {% if form.vars.valid %}
-                            <!-- Ajoutez ici le bouton de paiement ou de confirmation -->
-                        <a href="{{ path('app_stripe', {'pid': property.id}) }}" class="btn btn-success">
-                            Payer maintenant
-                        </a>
-                        {% endif %}
-                    </div>
+                            {{ form_end(form) }}
+                            <!-- ... Autres détails ... -->
                 </div>
                 <div class="col-lg-4">
                     <!-- ... Autre contenu ... -->

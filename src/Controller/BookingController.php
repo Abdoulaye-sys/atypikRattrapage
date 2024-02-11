@@ -40,25 +40,39 @@ class BookingController extends AbstractController
         // Vérifier si le formulaire est soumis et valide
         $isFormValid = $form->isSubmitted() && $form->isValid();
 
-        // Si le formulaire est soumis et valide, effectuer le calcul du prix et mettre à jour la base de données
-        if ($isFormValid) {
-            $dateArrive = $form->get('DateArrive')->getData();
-            $dateDepart = $form->get('DateDepart')->getData();
+        // Vérifier si les dates sont valides
+        $dateArrive = $form->get('DateArrive')->getData();
+        $dateDepart = $form->get('DateDepart')->getData();
+        $isDatesValid = $this->areDatesValid($dateArrive, $dateDepart);
+
+        // Si le formulaire est soumis, valide, et les dates sont valides, effectuer le calcul du prix et mettre à jour la base de données
+        if ($isFormValid && $isDatesValid) {
             $nights = $this->calculateNights($dateArrive, $dateDepart);
             $newPrix = $this->calculatePrix($property->getPrice(), $nights);
 
             // Mettre à jour le prix dans l'entité Property
-            $property->setPrix($newPrix);
+            $property->setPrice($newPrix);
 
             // Enregistrement des modifications dans la base de données
             $this->entityManager->flush();
+
+            // Rediriger vers la page de paiement Stripe
+            return $this->redirectToRoute('app_stripe', ['pid' => $property->getId(), 'prix' => $newPrix]);
         }
 
         return $this->render('booking/booking.html.twig', [
             'property' => $property,
             'form' => $form->createView(),
             'isFormValid' => $isFormValid,
+            'isDatesValid' => $isDatesValid,
         ]);
+    }
+
+    private function areDatesValid(\DateTimeInterface $dateArrive, \DateTimeInterface $dateDepart): bool
+    {
+        // Vérifiez ici si les dates sont valides selon vos critères
+        // Par exemple, si la date d'arrivée est supérieure à aujourd'hui et la date de départ est supérieure à la date d'arrivée
+        return $dateArrive >= new \DateTime('today') && $dateDepart > $dateArrive;
     }
 
     private function calculateNights(\DateTimeInterface $dateArrive, \DateTimeInterface $dateDepart): int
