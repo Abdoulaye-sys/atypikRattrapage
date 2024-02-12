@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints\Expression;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\LessThan;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class BookingFormType extends AbstractType
 {
@@ -40,6 +42,9 @@ class BookingFormType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider et Payer',
                 'attr' => ['class' => 'btn btn-success'],
+            ])
+            ->add('pid', HiddenType::class, [
+                'mapped' => false, // Ne mappez pas ce champ à l'entité
             ]);
     }
 
