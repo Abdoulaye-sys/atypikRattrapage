@@ -103,7 +103,6 @@
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item dropdown"> <a class="nav-link" href="{{ path('app_home') }}" role="button" aria-haspopup="true" aria-expanded="false">Accueil</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="{{path('app_about')}}">Qui sommes-nous</a> </li>
-                                <li class="nav-item"> <a class="nav-link" href="{{path('app_contact')}}">Contact</a> </li>
                                 <li class="nav-item"> <a class="nav-link" href="{{path('app_property')}}">Nos Hébergements</a> </li>
                                 <li class="nav-item"> <a class="nav-link"href="{{path('app_presse')}}">Espace presse</a> </li>
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -112,7 +111,7 @@
                                 {% endif %}
                             </ul>
 
-                                <a class="btn btn-success d-none d-xl-block" style="border-radius:30px;" href="{{ path('app_submit_property')}}">Proposer un logement</a>
+                                <a href="/submit/property" class="btn btn-success d-none d-xl-block" style="border-radius: 30px; background-color: #28a745; color: #fff; padding: 10px 20px; text-decoration: none;">Proposer un logement</a>
                         </div>
                     </nav>
                 </div>
