@@ -45,7 +45,10 @@ class BookingFormType extends AbstractType
             ])
             ->add('pid', HiddenType::class, [
                 'mapped' => false, // Ne mappez pas ce champ à l'entité
-            ]);
+            ])
+            ->add('PrixInitial', HiddenType::class, [
+            'required' => true,
+        ]);
     }
 
     // ...

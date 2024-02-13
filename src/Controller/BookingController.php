@@ -1,5 +1,7 @@
 <?php
 
+// src/Controller/BookingController.php
+
 namespace App\Controller;
 
 use App\Entity\Property;
@@ -31,9 +33,12 @@ class BookingController extends AbstractController
             throw $this->createNotFoundException('Logement non trouvé.');
         }
 
+        // Sauvegarder le prix initial
+        $prixInitial = $property->getPrice();
+
         // Créer une instance du formulaire avec les options du prix initial
         $form = $this->createForm(BookingFormType::class, null, [
-            'prix_initial' => $property->getPrice(), // Ajoutez ici le prix initial
+            'prix_initial' => $prixInitial,
         ]);
 
         // Gérer la soumission du formulaire
@@ -47,31 +52,16 @@ class BookingController extends AbstractController
         $dateDepart = $form->get('DateDepart')->getData();
         $isDatesValid = $this->areDatesValid($dateArrive, $dateDepart);
 
-        // Si le formulaire est soumis, valide, et les dates sont valides, effectuer le calcul du prix et mettre à jour la base de données
-// ...
+        // Si le formulaire est soumis, valide, et les dates sont valides, effectuer le calcul du prix
+        if ($isFormValid && $isDatesValid) {
+            $nights = $this->calculateNights($dateArrive, $dateDepart);
+            $newPrix = $this->calculatePrix($prixInitial, $nights);
 
-            // Si le formulaire est soumis, valide, et les dates sont valides, effectuer le calcul du prix et mettre à jour la base de données
-            if ($isFormValid && $isDatesValid) {
-                $nights = $this->calculateNights($dateArrive, $dateDepart);
-                $newPrix = $this->calculatePrix($property->getPrice(), $nights);
+            // Rediriger vers la page de paiement Stripe avec le nouveau prix
+            return $this->redirectToRoute('app_stripe', ['pid' => $pid, 'prix' => $newPrix]);
+        }
 
-                // Mettre à jour le prix dans l'entité Property
-                $property->setPrice($newPrix);
-
-                // Enregistrement des modifications dans la base de données
-                $this->entityManager->flush();
-
-                // Vérifier que $property->getId() n'est pas vide avant de créer la redirection
-                $pid = $property->getId();
-                if ($pid) {
-                    // Rediriger vers la page de paiement Stripe
-                    return $this->redirectToRoute('app_stripe', ['pid' => (int)$pid, 'prix' => $newPrix]);
-                } else {
-                    throw $this->createNotFoundException('Identifiant de propriété invalide.');
-                }
-            }
-
-            // ...
+        // ...
 
         return $this->render('booking/booking.html.twig', [
             'property' => $property,
@@ -87,12 +77,12 @@ class BookingController extends AbstractController
         if ($dateArrive === null || $dateDepart === null) {
             return false;
         }
-    
+
         // Vérifiez ici si les dates sont valides selon vos critères
         // Par exemple, si la date d'arrivée est supérieure à aujourd'hui et la date de départ est supérieure à la date d'arrivée
         return $dateArrive >= new \DateTime('today') && $dateDepart > $dateArrive;
     }
-    
+
     private function calculateNights(\DateTimeInterface $dateArrive, \DateTimeInterface $dateDepart): int
     {
         $interval = $dateArrive->diff($dateDepart);

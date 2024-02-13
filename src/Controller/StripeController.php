@@ -19,26 +19,24 @@ class StripeController extends AbstractController
     #[Route('/stripe/{pid}', name: 'app_stripe')]
     public function index(Request $request, int $pid, PersistenceManagerRegistry $doctrine): Response
     {
-        // Récupérer les détails du logement depuis la base de données en utilisant l'identifiant
         $property = $doctrine->getRepository(Property::class)->find($pid);
-
+    
         if (!$property) {
             throw $this->createNotFoundException('Logement non trouvé.');
         }
-
-        // Récupérer le prix depuis l'entité Property
+    
         $prix = $property->getPrice();
-
+    
         return $this->render('stripe/index.html.twig', [
             'stripe_key' => $_ENV["STRIPE_KEY"],
             'prix' => $prix,
             'pid' => $pid,
-            
+            'property' => $property
         ]);
     }
-
-    #[Route('/stripe/create-charge', name: 'app_stripe_charge', methods: ['POST'])]
-    public function createCharge(Request $request, EntityManagerInterface $entityManager)
+    
+    #[Route('/stripe/create-charge/{pid}', name: 'app_stripe_charge', methods: ['POST'])]
+    public function createCharge(Request $request, EntityManagerInterface $entityManager, PersistenceManagerRegistry $doctrine)
     {
         Stripe\Stripe::setApiKey($_ENV["STRIPE_SECRET"]);
     
@@ -53,11 +51,19 @@ class StripeController extends AbstractController
         $hebergement->setDateArrive(new \DateTime($dateArrive));
         $hebergement->setDateDepart(new \DateTime($dateDepart));
     
-        // Enregistrez l'entité Hebergement dans la base de données
+        $propertyId = $request->get('pid');
+        $property = $doctrine->getRepository(Property::class)->find($propertyId);
+    
+        if (!$property) {
+            throw $this->createNotFoundException('Logement non trouvé.');
+        }
+    
+        $prix_initial_property = $property->getPrice();
+        $hebergement->setPrixInitial($prix_initial_property);
+    
         $entityManager->persist($hebergement);
         $entityManager->flush();
     
-        // Réalisez le paiement via l'API Stripe
         Stripe\Charge::create([
             "amount" => $prix * 100,
             "currency" => "eur",
@@ -67,9 +73,9 @@ class StripeController extends AbstractController
     
         $this->addFlash(
             'success',
-            'Payment Successful!'
+            'Paiement réussi!'
         );
     
-        return $this->redirectToRoute('app_home'); // Redirection vers la page d'accueil
+        return $this->redirectToRoute('app_home');
     }
 }    

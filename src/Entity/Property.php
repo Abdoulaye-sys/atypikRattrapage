@@ -55,9 +55,13 @@ class Property
     #[ORM\OneToMany(mappedBy: 'property', targetEntity: PropertyFeature::class, cascade: ["persist", "remove"])]
     private Collection $propertyFeatures;
 
+    #[ORM\OneToMany(mappedBy: 'propertyId', targetEntity: Hebergement::class)]
+    private Collection $hebergements;
+
     public function __construct()
     {
         $this->propertyFeatures = new ArrayCollection();
+        $this->hebergements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -233,6 +237,36 @@ class Property
             // set the owning side to null (unless already changed)
             if ($propertyFeature->getProperty() === $this) {
                 $propertyFeature->setProperty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Hebergement>
+     */
+    public function getHebergements(): Collection
+    {
+        return $this->hebergements;
+    }
+
+    public function addHebergement(Hebergement $hebergement): static
+    {
+        if (!$this->hebergements->contains($hebergement)) {
+            $this->hebergements->add($hebergement);
+            $hebergement->setPropertyId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHebergement(Hebergement $hebergement): static
+    {
+        if ($this->hebergements->removeElement($hebergement)) {
+            // set the owning side to null (unless already changed)
+            if ($hebergement->getPropertyId() === $this) {
+                $hebergement->setPropertyId(null);
             }
         }
 

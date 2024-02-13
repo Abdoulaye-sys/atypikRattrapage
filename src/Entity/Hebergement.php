@@ -32,6 +32,12 @@ class Hebergement
     #[ORM\Column]
     private ?bool $paiementEffectue = null;
 
+    #[ORM\Column]
+    private ?float $prixInitial = null;
+
+    #[ORM\ManyToOne(inversedBy: 'hebergements')]
+    private ?Property $propertyId = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +111,30 @@ class Hebergement
     public function setPaiementEffectue(bool $paiementEffectue): static
     {
         $this->paiementEffectue = $paiementEffectue;
+
+        return $this;
+    }
+
+    public function getPrixInitial(): ?float
+    {
+        return $this->prixInitial;
+    }
+
+    public function setPrixInitial(float $prixInitial): static
+    {
+        $this->prixInitial = $prixInitial;
+
+        return $this;
+    }
+
+    public function getPropertyId(): ?Property
+    {
+        return $this->propertyId;
+    }
+
+    public function setPropertyId(?Property $propertyId): static
+    {
+        $this->propertyId = $propertyId;
 
         return $this;
     }

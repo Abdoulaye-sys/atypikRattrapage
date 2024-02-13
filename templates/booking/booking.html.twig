@@ -30,13 +30,12 @@
 
                         <!-- Affichez le formulaire de réservation uniquement s'il n'est pas encore soumis ou s'il n'est pas valide -->
                         {{ form_start(form) }}
+                        {{ form_widget(form.pid, { 'value': property.id }) }}
                         {{ form_row(form.DateArrive, { 'attr': {'class': 'date-arrive'} }) }}
                         {{ form_row(form.DateDepart, { 'attr': {'class': 'date-depart'} }) }}
                         <!-- Ajoutez d'autres champs au besoin -->
 
-                        <div class="mt-4">
-                            {{ form_widget(form, { 'label': 'Valider et Payer', 'attr': {'class': 'btn btn-success'} }) }}
-                        </div>
+                        {{ form_widget(form, { 'label': 'Valider et Payer', 'attr': {'class': 'mt-4 mb-4 btn btn-success'} }) }}
 
                         {{ form_end(form) }}
                         <!-- ... Autres détails ... -->
@@ -50,30 +49,36 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        var prixInitial = parseFloat('{{ property.price|number_format(2, '.', '') }}');
+        var prixCalcule = prixInitial; // Initialisez le prix calculé avec le prix initial
+    </script>
+    <script>
         $(document).ready(function() {
+            // Utiliser la variable JavaScript prixInitial
+            var prixCalcule = prixInitial; // Prix initial pour le calcul
+
             // Définir une fonction pour calculer le prix en fonction des dates sélectionnées
             function calculerPrix() {
                 // Récupérer les dates d'arrivée et de départ
                 var dateArrive = new Date($('.date-arrive').val());
                 var dateDepart = new Date($('.date-depart').val());
 
+
                 // Si les dates ne sont pas valides, afficher le prix initial et masquer le bouton de paiement
                 if (isNaN(dateArrive.getTime()) || isNaN(dateDepart.getTime()) || dateDepart <= dateArrive) {
-                    $('#prix').text('{{ property.price }}€');
+                    $('#prix').text(prixInitial.toFixed(2) + '€');
+                    prixCalcule = prixInitial; // Réinitialiser le prix calculé avec le prix initial
                     return;
                 }
 
                 // Calculer la différence en jours
                 var differenceEnJours = Math.ceil((dateDepart - dateArrive) / (1000 * 60 * 60 * 24));
 
-                // Récupérer le prix initial
-                var prixInitial = parseFloat('{{ property.price }}');
-
                 // Calculer le prix total
-                var prixTotal = differenceEnJours * prixInitial;
+                prixCalcule = differenceEnJours * prixInitial;
 
                 // Afficher le prix total dans l'élément avec l'id 'prix'
-                $('#prix').text(prixTotal.toFixed(2) + '€');
+                $('#prix').text(prixCalcule.toFixed(2) + '€');
             }
 
             // Appeler la fonction de calcul lorsque les dates changent
