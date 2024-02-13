@@ -19,7 +19,7 @@ use Doctrine\DBAL\Types\IntegerType;
 
 class PropertyType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', TextType::class, [
@@ -91,7 +91,7 @@ class PropertyType extends AbstractType
     }
 
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver) : void
     {
         $resolver->setDefaults([
             'data_class' => Property::class, // Remplacez par le nom de votre classe d'entité
