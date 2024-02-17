@@ -1,5 +1,6 @@
 <?php
 
+namespace    App\Kernel;
 use App\Kernel;
 
 
