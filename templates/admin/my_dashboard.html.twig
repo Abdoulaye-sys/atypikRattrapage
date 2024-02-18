@@ -1,5 +1,11 @@
+{# templates/admin/my_dashboard.html.twig #}
 {% extends '@EasyAdmin/layout.html.twig' %}
 
 {% block main %}
-    {# Your custom dashboard content goes here #}
+    {# Votre contenu de tableau de bord personnalisé va ici #}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/public/bundles/easyadmin/app.933c96e5.css">
 {% endblock %}

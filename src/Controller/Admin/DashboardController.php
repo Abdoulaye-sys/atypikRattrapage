@@ -41,7 +41,7 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Atypikhouse')
-            ->setFaviconPath('../../../images/logo/logo-png.png')
+            ->setFaviconPath('../../../public/images/logo/logo-png.png')
             ->setTitle('Atypikhouse|Admin');
     }
 
