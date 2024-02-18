@@ -1,61 +1,62 @@
 <html lang="fr">
 <!-- Required meta tags -->
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Inclure jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-<!-- Inclure jquery.cookie.js -->
-<!-- ... Autres balises <script> ... -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Inclure jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+  <!-- Inclure jquery.cookie.js -->
+  <!-- ... Autres balises <script> ... -->
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Muli:400,400i,500,600,700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,500,600,700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
 
-<!-- Css Link -->
-<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-slider.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/layerslider.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/color.css') }}" id="color-change">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('fonts/flaticon/flaticon.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-<link rel="manifest" href="{{ asset('manifest.json') }}">
-<meta name="description" content="Découvrez des logements uniques avec Atypik House. Réservez des hébergements hors du commun pour une expérience inoubliable.">
+  <!-- Css Link -->
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap-slider.css">
+  <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="/css/layerslider.css">
+  <link rel="stylesheet" type="text/css" href="/css/color.css" id="color-change">
+  <link rel="stylesheet" type="text/css" href="/css/owl.carousel.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/fonts/flaticon/flaticon.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="description" content="Découvrez des logements uniques avec Atypik House. Réservez des hébergements hors du commun pour une expérience inoubliable">
 
-<!-- Balises méta pour les réseaux sociaux (facultatif, mais recommandé) -->
-<meta property="og:title" content="Atypik House - Votre destination unique">
-<meta property="og:description" content="Découvrez des logements uniques avec Atypik House. Réservez des hébergements hors du commun pour une expérience inoubliable">
-<meta property="og:image" content="URL_de_l_image">
-<meta property="og:url" content="URL_de_la_page">
-<meta property="og:type" content="website">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
-<meta name="theme-color" media="(prefers-color-scheme: dark)"  content="black">
+  <!-- Balises méta pour les réseaux sociaux (facultatif, mais recommandé) -->
+  <meta property="og:title" content="Atypik House - Votre destination unique">
+  <meta property="og:description" content="Découvrez des logements uniques avec Atypik House. Réservez des hébergements hors du commun pour une expérience inoubliable">
+  <meta property="og:image" content="URL_de_l_image">
+  <meta property="og:url" content="URL_de_la_page">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="black">
 
-<!-- Balises méta pour les robots d'exploration -->
-<meta name="robots" content="index, follow">
+  <!-- Balises méta pour les robots d'exploration -->
+  <meta name="robots" content="index, follow">
 
-<!-- Balises méta pour les mots-clés (moins important de nos jours, mais toujours utile) -->
-<meta name="keywords" content="logements uniques, hébergements atypiques, réservation, expérience de voyage">
+  <!-- Balises méta pour les mots-clés (moins important de nos jours, mais toujours utile) -->
+  <meta name="keywords" content="logements uniques, hébergements atypiques, réservation, expérience de voyage">
 
-<!-- Balise méta pour spécifier la langue de la page -->
-<meta name="language" content="French">
+  <!-- Balise méta pour spécifier la langue de la page -->
+  <meta name="language" content="French">
 
-<!-- Balise méta pour indiquer l'auteur du site -->
-<meta name="author" content="digital slayers ">
+  <!-- Balise méta pour indiquer l'auteur du site -->
+  <meta name="author" content="digital slayers ">
 
-<!-- Balise méta pour la définition de l'encodage des caractères -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Balise méta pour la définition de l'encodage des caractères -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<!-- Meta Tags -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Meta Tags -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<!-- Balise méta pour les informations de contact -->
-<meta name="contact" content="contact@atypikhouse.com">
+  <!-- Balise méta pour les informations de contact -->
+  <meta name="contact" content="contact@atypikhouse.com">
 
 <!-- Title -->
 <title>Atypik House</title>
