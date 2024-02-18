@@ -3,13 +3,13 @@
     "name": "ATYPIKHOUSE",
     "icons": [
       {
-        "src": "public/images/logo-transparent-svg512.svg",
+        "src": "/images/logo-transparent-svg512.svg",
         "type": "image/svg+xml",
         "sizes": "512x512"
       },
 
       {
-        "src": "public/images/logo/logo-png512.png",
+        "src": "/images/logo/logo-png512.png",
         "type": "image/png",
         "sizes": "512x512"
       }
@@ -26,20 +26,20 @@
         "short_name": "ATYPIKHOUSE",
         "description": "Découvrez des logements uniques avec Atypik House. Réservez des hébergements hors du commun pour une expérience inoubliable",
         "url": "/",
-        "icons": [{ "src": "public/images/logo/logo-png192.png", "sizes": "192x192" }]
+        "icons": [{ "src": "/images/logo/logo-png192.png", "sizes": "192x192" }]
       }
 
     ],
     "description": "Découvrez des logements uniques avec Atypik House. Réservez des hébergements hors du commun pour une expérience inoubliable",
     "screenshots": [
       {
-        "src": "public/images/logo-png540.png",
+        "src": "/images/logo-png540.png",
         "type": "image/png",
         "sizes": "540x720",
         "form_factor": "narrow"
       },
       {
-        "src": "public/images/logo-png720.png",
+        "src": "/images/logo-png720.png",
         "type": "image/jpg",
         "sizes": "720x540",
         "form_factor": "wide"
