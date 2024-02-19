@@ -17,7 +17,7 @@
                         <div class="featured-thumb hover-zoomer mb-4">
                             <div class="overlay-black overflow-hidden position-relative">
                                 <a href="{{ path('app_property_details', {'id': property.id}) }}">
-                                    <img src="../../public/images/' ~ property.pimage" alt="pimage" id="propertyImage{{ property.id }}">
+                                    <img src="{{ app.request.getBasePath() }}/public/images/{{ property.pimage }}" alt="pimage" id="propertyImage{{ property.id }}">
                                 </a>
                                 <div class="price text-primary"><b>{{ property.price }} € / nuit</b><span class="text-white">{{ property.size }} m²</span></div>
                             </div>
