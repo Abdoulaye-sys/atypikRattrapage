@@ -50,8 +50,25 @@ class DashboardController extends AbstractDashboardController
     public function configureAssets(): Assets
     {
         return Assets::new()
-            ->addCssFile('/public/bundles/easyadmin/app.a358ddd1.css')
-            ->addCssFile('/public/bundles/easyadmin/app.a358ddd1.rtl.css');
+        ->addCssFile('/public/bundles/easyadmin/app.a358ddd1.css')
+        ->addCssFile('/public/bundles/easyadmin/app.a358ddd1.rtl.css')
+        ->addJsFile('/public/bundles/easyadmin/app.c3e41b70.js')
+        ->addJsFile('/public/bundles/easyadmin/form.6e84c31d.js')
+        ->addJsFile('/public/bundles/easyadmin/page-layout.3347892e.js')
+        ->addJsFile('/public/bundles/easyadmin/page-color-scheme.e0316f30.js')
+        ->addJsFile('/public/bundles/easyadmin/field-boolean.38cf4737.js')
+        ->addCssFile('/public/bundles/easyadmin/field-code-editor.78ccdb00.css')
+        ->addCssFile('/public/bundles/easyadmin/field-code-editor.78ccdb00.rtl.css')
+        ->addJsFile('/public/bundles/easyadmin/field-code-editor.5893dd28.js')
+        ->addJsFile('/public/bundles/easyadmin/field-collection.8ea41328.js')
+        ->addJsFile('/public/bundles/easyadmin/field-file-upload.a3a92842.js')
+        ->addJsFile('/public/bundles/easyadmin/field-image.19d51d41.js')
+        ->addJsFile('/public/bundles/easyadmin/field-slug.051e4dcd.js')
+        ->addJsFile('/public/bundles/easyadmin/field-textarea.268f9a4d.js')
+        ->addCssFile('/public/bundles/easyadmin/field-text-editor.7f2b8426.css')
+        ->addCssFile('/public/bundles/easyadmin/field-text-editor.7f2b8426.rtl.css')
+        ->addJsFile('/public/bundles/easyadmin/field-text-editor.833157ee.js')
+        ->addJsFile('/public/bundles/easyadmin/login.7259f5de.js');
     }
 
     public function configureMenuItems(): iterable
