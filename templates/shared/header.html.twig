@@ -78,10 +78,7 @@
                         <ul class="list-text-white d-table">
                             <li><i class="fas fa-user text-success mr-1"></i>
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                    <a href="{{ path('app_logout') }}">Se Déconnecter</a>&nbsp;&nbsp; |
-                                    <li><i class="fas fa-user text-success mr-1"></i>
-                                        <a href=>Profil</a>
-                                    </li>
+                                    <a href="{{ path('app_logout') }}">Se Déconnecter</a>&nbsp;&nbsp;
                                 {% else %}
                                     <a href="{{ path('app_login') }}">Se Connecter</a>&nbsp;&nbsp; |
                                     <li><i class="fas fa-user-plus text-success mr-1"></i>
