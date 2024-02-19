@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -43,6 +44,14 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('Atypikhouse')
             ->setFaviconPath('../../../public/images/logo/logo-png.png')
             ->setTitle('Atypikhouse|Admin');
+    }
+
+
+    public function configureAssets(): Assets
+    {
+        return Assets::new()
+            ->addCssFile('/public/bundles/easyadmin/app.a358ddd1.css')
+            ->addCssFile('/public/bundles/easyadmin/app.a358ddd1.rtl.css');
     }
 
     public function configureMenuItems(): iterable
