@@ -11,7 +11,7 @@ use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 
 class PropertyDetailsController extends AbstractController
 {
-    #[Route('/property/details/{id}', name: 'app_property_details')]
+    #[Route('/property/{id}', name: 'app_property_details')]
     public function showDetails($id, PersistenceManagerRegistry $doctrine): Response
     {
         // Récupérer l'entité Property correspondante à l'ID
