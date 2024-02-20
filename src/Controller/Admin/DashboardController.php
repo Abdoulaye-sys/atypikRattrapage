@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Hebergement;
 use App\Entity\Payment;
 use App\Entity\Property;
-use App\Entity\PropertyFeature;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
