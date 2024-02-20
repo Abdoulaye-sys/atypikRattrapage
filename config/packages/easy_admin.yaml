@@ -3,3 +3,4 @@ easy_admin:
     design:
         form:
             csrf_protection: true
+    base_path: 'https://atypikhouse-e61c3f761e5e.herokuapp.com/admin'
