@@ -6,14 +6,14 @@
 {% block body %}
 {% include 'shared/header.html.twig'%}
 
-{# <!-- Ajout de la bannière de cookies -->
+<!-- Ajout de la bannière de cookies -->
     <div id="cookieConsent" class="alert alert-info cookie-banner fixed-bottom mb-0 rounded-0">
         <div class="container text-center">
             Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site.
             <button class="btn btn-sm btn-primary accept-btn">J'accepte</button>
             <a href="{{ path('app_politique') }}" class="btn btn-sm btn-link">En savoir plus</a>
         </div>
-    </div> #}
+    </div>
 
 {# Banner Start #}
 <div class="overlay-black w-100 slider-banner1 position-relative" style="background-image: url('../public/images/banner/rshmpg.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
@@ -202,27 +202,7 @@
 </div>
 {# End How it work #}
 
-<!-- Script pour configurer et initialiser CookieConsent -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            window.cookieconsent.initialise({
-                "palette": {
-                    "popup": {
-                        "background": "#252e39"
-                    },
-                    "button": {
-                        "background": "#14a7d0"
-                    }
-                },
-                "content": {
-                    "message": "Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site.",
-                    "dismiss": "J'accepte",
-                    "link": "En savoir plus",
-                    "href": "{{ path('app_politique') }}"
-                }
-            });
-        });
-    </script>
+
 
 {% include 'shared/footer.html.twig'%}
 {% endblock %}
