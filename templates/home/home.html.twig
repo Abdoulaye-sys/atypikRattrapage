@@ -202,6 +202,31 @@
 </div>
 {# End How it work #}
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var cookieBanner = document.getElementById('cookieConsent');
+        var acceptButton = cookieBanner.querySelector('.accept-btn');
+
+        // Fonction pour masquer la bannière de cookies
+        function hideCookieBanner() {
+            cookieBanner.style.display = 'none';
+        }
+
+        // Ajouter un gestionnaire d'événement pour le clic sur le bouton "J'accepte"
+        acceptButton.addEventListener('click', function () {
+            // Enregistrez le consentement ici (par exemple, avec un cookie)
+            // ...
+
+            // Masquer la bannière après le clic
+            hideCookieBanner();
+        });
+
+        // Vous pouvez également masquer la bannière si elle est déjà acceptée
+        // en vérifiant votre mécanisme de stockage des consentements (par exemple, cookie).
+        // ...
+
+    });
+</script>
 
 
 {% include 'shared/footer.html.twig'%}
