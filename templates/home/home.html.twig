@@ -2,6 +2,27 @@
 
 {% block title %}Atypikhouse{% endblock %}
 
+<!-- Script pour configurer et initialiser CookieConsent -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#252e39"
+                },
+                "button": {
+                    "background": "#14a7d0"
+                }
+            },
+            "content": {
+                "message": "Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site.",
+                "dismiss": "J'accepte",
+                "link": "En savoir plus",
+                "href": "/politique"
+            }
+        });
+    });
+</script>
 {% block body %}
 {% include 'shared/header.html.twig'%}
 
