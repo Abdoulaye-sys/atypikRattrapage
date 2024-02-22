@@ -3,31 +3,49 @@
 {% block title %}Hello PolitiqueController!{% endblock %}
 
 {% block body %}
-{% include 'shared/header.html.twig'%}
- <h1>Politique de Confidentialité</h1>
+    {% include 'shared/header.html.twig' %}
 
-    <p>Merci de visiter le site web d'AtypikHouse. Votre vie privée est importante pour nous. Cette Politique de Confidentialité explique comment nous collectons, utilisons et protégeons vos informations personnelles.</p>
+    <div class="container mt-5">
+        <h1 class="text-center">Politique de Confidentialité</h1>
 
-    <h2>Collecte d'Informations</h2>
-    <p>Nous collectons des informations lorsque vous utilisez notre site web, créez un compte ou effectuez une réservation. Les informations que nous collectons peuvent inclure votre nom, adresse e-mail, numéro de téléphone et autres informations pertinentes pour le processus de réservation.</p>
+        <div class="mt-4">
+            <h2>Collecte d'Informations</h2>
+            <p>Nous collectons des informations lorsque vous utilisez notre site web, créez un compte ou effectuez une réservation. Les informations que nous collectons peuvent inclure votre nom, adresse e-mail, numéro de téléphone et autres informations pertinentes pour le processus de réservation.</p>
+        </div>
 
-    <h2>Utilisation des Informations</h2>
-    <p>Nous utilisons les informations collectées pour traiter vos réservations, améliorer notre service client, personnaliser votre expérience utilisateur et vous envoyer des informations relatives à nos offres et promotions. Nous ne partageons pas vos informations personnelles avec des tiers, sauf si cela est nécessaire pour traiter vos réservations.</p>
+        <div class="mt-4">
+            <h2>Utilisation des Informations</h2>
+            <p>Nous utilisons les informations collectées pour traiter vos réservations, améliorer notre service client, personnaliser votre expérience utilisateur et vous envoyer des informations relatives à nos offres et promotions. Nous ne partageons pas vos informations personnelles avec des tiers, sauf si cela est nécessaire pour traiter vos réservations.</p>
+        </div>
 
-    <h2>Protection des Données</h2>
-    <p>Nous prenons des mesures de sécurité pour protéger vos informations personnelles contre tout accès non autorisé, modification, divulgation ou destruction. Vos informations sont stockées sur des serveurs sécurisés et sont protégées par des mesures techniques et organisationnelles appropriées.</p>
+        <div class="mt-4">
+            <h2>Protection des Données</h2>
+            <p>Nous prenons des mesures de sécurité pour protéger vos informations personnelles contre tout accès non autorisé, modification, divulgation ou destruction. Vos informations sont stockées sur des serveurs sécurisés et sont protégées par des mesures techniques et organisationnelles appropriées.</p>
+        </div>
 
-    <h2>Cookies</h2>
-    <p>Notre site web utilise des cookies pour améliorer votre expérience utilisateur. Vous pouvez choisir de désactiver les cookies dans les paramètres de votre navigateur, mais cela peut affecter certaines fonctionnalités de notre site.</p>
+        <div class="mt-4">
+            <h2>Cookies</h2>
+            <p>Notre site web utilise des cookies pour améliorer votre expérience utilisateur. Vous pouvez choisir de désactiver les cookies dans les paramètres de votre navigateur, mais cela peut affecter certaines fonctionnalités de notre site.</p>
+        </div>
 
-    <h2>Consentement</h2>
-    <p>En utilisant notre site web, vous consentez à notre Politique de Confidentialité.</p>
+        <div class="mt-4">
+            <h2>Consentement</h2>
+            <p>En utilisant notre site web, vous consentez à notre Politique de Confidentialité.</p>
+        </div>
 
-    <h2>Contact</h2>
-    <p>Pour toute question concernant notre Politique de Confidentialité, veuillez nous contacter à l'adresse suivante : contact@atypikhouse.com.</p>
+        <div class="mt-4">
+            <h2>Contact</h2>
+            <p>Pour toute question concernant notre Politique de Confidentialité, veuillez nous contacter à l'adresse suivante : <a href="mailto:contact@atypikhouse.com">contact@atypikhouse.com</a>.</p>
+        </div>
 
-    <p>Cette politique de confidentialité est susceptible d'être mise à jour. Veuillez consulter cette page régulièrement pour rester informé des éventuelles modifications.</p>
+        <div class="mt-4">
+            <p>Cette politique de confidentialité est susceptible d'être mise à jour. Veuillez consulter cette page régulièrement pour rester informé des éventuelles modifications.</p>
+        </div>
 
-    <p>Date de mise à jour : 29/05/2021</p>
-{% include 'shared/footer.html.twig'%}
+        <div class="mt-4">
+            <p>Date de mise à jour : 29/05/2021</p>
+        </div>
+    </div>
+
+    {% include 'shared/footer.html.twig' %}
 {% endblock %}
