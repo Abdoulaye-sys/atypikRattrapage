@@ -13,7 +13,7 @@
                     <h2>{{ property.title }}</h2>
 
                     <!-- Affichage de l'image -->
-                   <img src="{{ app.request.getBasePath() }}/public/images/{{ property.pimage }}" alt="pimage" id="propertyImage{{ property.id }}">
+                        <img src="{{ asset('/public/images/' ~ property.pimage) }}" alt="pimage" id="propertyImage{{ property.id }}">
 
 
                     <div class="row mb-4">
