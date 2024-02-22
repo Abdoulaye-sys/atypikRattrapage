@@ -1,34 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AtypikHouse|CGV{% endblock %}
+{% block title %}AtypikHouse | CGV{% endblock %}
 
 {% block body %}
-{% include 'shared/header.html.twig'%}
-<body>
-    <h1>Conditions Générales de Vente</h1>
+    {% include 'shared/header.html.twig' %}
 
-    <h2>Objet</h2>
-    <p>Les présentes Conditions Générales de Vente (CGV) définissent les modalités de réservation et de location des habitations insolites proposées par AtypikHouse.</p>
+    <div class="container mt-5">
+        <h1 class="text-center">Conditions Générales de Vente</h1>
 
-    <h2>Réservation et Paiement</h2>
-    <p>Les réservations peuvent être effectuées en ligne sur notre site web. Le paiement doit être effectué selon les modalités précisées lors de la réservation.</p>
+        <div class="mt-4">
+            <h2>Objet</h2>
+            <p>Les présentes Conditions Générales de Vente (CGV) définissent les modalités de réservation et de location des habitations insolites proposées par AtypikHouse.</p>
+        </div>
 
-    <h2>Annulation</h2>
-    <p>Toute annulation doit être effectuée conformément à notre politique d'annulation, laquelle est précisée lors de la réservation.</p>
+        <div class="mt-4">
+            <h2>Réservation et Paiement</h2>
+            <p>Les réservations peuvent être effectuées en ligne sur notre site web. Le paiement doit être effectué selon les modalités précisées lors de la réservation.</p>
+        </div>
 
-    <h2>Responsabilité</h2>
-    <p>AtypikHouse ne saurait être tenu responsable des éventuels dommages ou accidents survenus pendant le séjour dans nos habitations insolites.</p>
+        <div class="mt-4">
+            <h2>Annulation</h2>
+            <p>Toute annulation doit être effectuée conformément à notre politique d'annulation, laquelle est précisée lors de la réservation.</p>
+        </div>
 
-    <h2>Modification des CGV</h2>
-    <p>Les présentes CGV sont susceptibles d'être modifiées à tout moment. Les modifications seront applicables aux réservations effectuées après la date de modification.</p>
+        <div class="mt-4">
+            <h2>Responsabilité</h2>
+            <p>AtypikHouse ne saurait être tenu responsable des éventuels dommages ou accidents survenus pendant le séjour dans nos habitations insolites.</p>
+        </div>
 
-    <h2>Contact</h2>
-    <p>Pour toute question concernant nos CGV, veuillez nous contacter à l'adresse : contact@atypikhouse.com.</p>
+        <div class="mt-4">
+            <h2>Modification des CGV</h2>
+            <p>Les présentes CGV sont susceptibles d'être modifiées à tout moment. Les modifications seront applicables aux réservations effectuées après la date de modification.</p>
+        </div>
 
-    <p>Ces CGV sont susceptibles d'être mises à jour. Veuillez consulter cette page régulièrement pour rester informé des éventuelles modifications.</p>
+        <div class="mt-4">
+            <h2>Contact</h2>
+            <p>Pour toute question concernant nos CGV, veuillez nous contacter à l'adresse : <a href="mailto:contact@atypikhouse.com">contact@atypikhouse.com</a>.</p>
+        </div>
 
-    <p>Date de mise à jour : 29/05/2021</p>
+        <div class="mt-4">
+            <p>Ces CGV sont susceptibles d'être mises à jour. Veuillez consulter cette page régulièrement pour rester informé des éventuelles modifications.</p>
+        </div>
 
-{% include 'shared/footer.html.twig'%}
+        <div class="mt-4">
+            <p>Date de mise à jour : 29/05/2021</p>
+        </div>
+    </div>
 
+    {% include 'shared/footer.html.twig' %}
 {% endblock %}

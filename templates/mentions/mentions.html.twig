@@ -1,33 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AtypikHouse|Mentions{% endblock %}
+{% block title %}AtypikHouse | Mentions{% endblock %}
 
 {% block body %}
-{% include 'shared/header.html.twig'%}
-<h1>Mentions Légales</h1>
+    {% include 'shared/header.html.twig' %}
 
-    <h2>Informations sur la Société</h2>
-    <p>AtypikHouse est une SARL au capital de 10 000€, composée de 3 associés partageant les mêmes passions pour les voyages, l‘habitat alternatif et la vie en harmonie avec la nature. La société est basée à Pierrefonds, dans le département de l'Oise.</p>
+    <div class="container mt-5">
+        <h1 class="text-center">Mentions Légales</h1>
 
-    <h2>Coordonnées</h2>
-    <p>Adresse : 11 allée des alpes , Villiers-sur-Marne</p>
-    <p>Email : contact@atypikhouse.com</p>
-    <p>Téléphone : 01 23 45 67 89</p>
+        <div class="mt-4">
+            <h2>Informations sur la Société</h2>
+            <p>AtypikHouse est une SARL au capital de 10 000€, composée de 3 associés partageant les mêmes passions pour les voyages, l‘habitat alternatif et la vie en harmonie avec la nature. La société est basée à Pierrefonds, dans le département de l'Oise.</p>
+        </div>
 
-    <h2>Directeur de la Publication</h2>
-    <p>[Nom du Directeur de la Publication]</p>
+        <div class="mt-4">
+            <h2>Coordonnées</h2>
+            <p>Adresse : 11 allée des alpes, Villiers-sur-Marne</p>
+            <p>Email : <a href="mailto:contact@atypikhouse.com">contact@atypikhouse.com</a></p>
+            <p>Téléphone : 01 23 45 67 89</p>
+        </div>
 
-    <h2>Hébergement</h2>
-    <p>Notre site est hébergé par 000webhost situé à l'adresse: 61 Lordou Vironos Street.</p>
+        <div class="mt-4">
+            <h2>Directeur de la Publication</h2>
+            <p>[Nom du Directeur de la Publication]</p>
+        </div>
 
-    <h2>Propriété Intellectuelle</h2>
-    <p>Tous les contenus présents sur le site d'AtypikHouse, notamment les textes, images, vidéos et logos, sont protégés par les lois sur la propriété intellectuelle. Toute reproduction ou utilisation non autorisée est interdite.</p>
+        <div class="mt-4">
+            <h2>Hébergement</h2>
+            <p>Notre site est hébergé par 000webhost situé à l'adresse: 61 Lordou Vironos Street.</p>
+        </div>
 
-    <h2>Responsabilité</h2>
-    <p>AtypikHouse ne saurait être tenu responsable des éventuels dommages directs ou indirects résultant de l'utilisation de son site web.</p>
+        <div class="mt-4">
+            <h2>Propriété Intellectuelle</h2>
+            <p>Tous les contenus présents sur le site d'AtypikHouse, notamment les textes, images, vidéos et logos, sont protégés par les lois sur la propriété intellectuelle. Toute reproduction ou utilisation non autorisée est interdite.</p>
+        </div>
 
-    <p>Cette page de mentions légales est susceptible d'être mise à jour. Veuillez consulter cette page régulièrement pour rester informé des éventuelles modifications.</p>
+        <div class="mt-4">
+            <h2>Responsabilité</h2>
+            <p>AtypikHouse ne saurait être tenu responsable des éventuels dommages directs ou indirects résultant de l'utilisation de son site web.</p>
+        </div>
 
-    <p>Date de mise à jour : 29/05/2021</p>
-{% include 'shared/footer.html.twig'%}
+        <div class="mt-4">
+            <p>Cette page de mentions légales est susceptible d'être mise à jour. Veuillez consulter cette page régulièrement pour rester informé des éventuelles modifications.</p>
+        </div>
+
+        <div class="mt-4">
+            <p>Date de mise à jour : 29/05/2021</p>
+        </div>
+    </div>
+
+    {% include 'shared/footer.html.twig' %}
 {% endblock %}
