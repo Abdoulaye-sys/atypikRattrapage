@@ -6,7 +6,7 @@
     {# templates/submit_property/submit_property.html.twig #}
     {% include 'shared/header.html.twig' %}
 
-    <!-- Partie "Pourquoi nous choisir" -->
+       <!-- Partie "Pourquoi nous choisir" -->
     <div class="row p-5 bg-white">
         <div class="col-md-6 offset-md-3">
             <h2 class="text-secondary double-down-line text-center">Pourquoi nous choisir ?</h2>
@@ -48,7 +48,39 @@
                     <hr>
 
                     {{ form_start(form) }}
-                    <!-- ... Votre formulaire ici ... -->
+                    <div class="form-group">
+                        {{ form_row(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Titre'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.pcontent, {'attr': {'class': 'form-control', 'placeholder': 'Contenu'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.type, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.bedroom, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.bathroom, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.size, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.price, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.location, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.city, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.state, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.date, {'attr': {'class': 'form-control'}}) }}
+                    </div>
 
                     <div id="propertyFeaturesContainer"
                          data-prototype="{{ form_widget(form.propertyFeatures.vars.prototype)|e('html_attr') }}">
