@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AtypikHouse{% endblock %}
+
+{% block body %}
+    {# templates/submit_property/submit_property.html.twig #}
+    {% include 'shared/header.html.twig' %}
+
+       <!-- Partie "Pourquoi nous choisir" -->
+    <div class="row p-5 bg-white">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-secondary double-down-line text-center">Pourquoi nous choisir ?</h2>
+            <p>
+                EJOIGNEZ L'AVENTURE ET BOOSTEZ VOS VENTES ! Intégrez la 1ère place de marché exclusivement dédiée à la commercialisation d'hébergements insolites !
+            </p>
+            <ul>
+                <li>500 établissements référencés partout en France</li>
+                <li>1500 hébergements insolites présentés sur notre centrale</li>
+                <li>30 millions de pages vues</li>
+                <!-- Ajoutez d'autres points selon vos besoins -->
+            </ul>
+
+            <h3>QUI SOMMES-NOUS ?</h3>
+            <p>
+                Basée dans le Sud de la France, AtypikHouse est leader sur le marché de l'insolite et référence des hébergements atypiques partout sur son territoire, et même à l'étranger !
+            </p>
+
+            <h3>NOS VALEURS</h3>
+            <p>
+                Chez AtypikHouse, nous plaçons la relation avec les propriétaires au cœur du partenariat. Notre collaboration avec les hébergeurs est basée sur le respect des intérêts de chacun, tout en laissant la liberté et l'indépendance nécessaires à leur activité.
+            </p>
+            <!-- Ajoutez d'autres informations sur vos valeurs et votre concept -->
+
+            <!-- Ajoutez d'autres sections et contenus selon vos besoins -->
+        </div>
+    </div>
+
+    <div class="full-row">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="text-secondary double-down-line text-center">Proposer un hébergement</h2>
+                </div>
+            </div>
+            <div class="row p-5 bg-white">
+                <div class="description col-md-6 offset-md-3">
+                    <h5 class="text-secondary mb-4">Informations de base</h5>
+                    <hr>
+
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_row(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Titre'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.pcontent, {'attr': {'class': 'form-control', 'placeholder': 'Contenu'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.type, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.bedroom, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.bathroom, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.size, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.price, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.location, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.city, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.state, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.date, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div id="propertyFeaturesContainer"
+                         data-prototype="{{ form_widget(form.propertyFeatures.vars.prototype)|e('html_attr') }}">
+                        {% for feature in form.propertyFeatures %}
+                            <div class="form-group">
+                                {{ form_row(feature, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <button type="button" id="addFeature" class="btn btn-primary">Ajouter une nouvelle caractéristique</button>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                {{ form_row(form.pimage, {'label': false}) }} {# Masquer le label de PimageAucun fichier choisi #}
+                {{ form_row(form.propertyFeatures, {'label': false}) }} {# Masquer le label de Property features #}
+                
+                <button type="submit" class="btn btn-success btn-lg" style="border-radius: 30px; margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Valider la proposition
+                </button>
+            </div>
+
+            <div class="row p-5 bg-white">
+                {{ form_end(form) }} {# Move form_end here #}
+
+                <!-- Affichage de l'image -->
+                {% if form.vars.value.pimage %}
+                    <img src="{{ asset('/public/images/' ~ form.vars.value.pimage) }}" alt="Image de la propriété">                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'shared/footer.html.twig' %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var container = document.getElementById('propertyFeaturesContainer');
+            var addFeatureButton = document.getElementById('addFeature');
+
+            addFeatureButton.addEventListener('click', function () {
+                var prototype = container.dataset.prototype;
+                var index = container.children.length;
+
+                var featureHtml = prototype.replace(/__name__/g, index);
+                var featureContainer = document.createElement('div');
+                featureContainer.classList.add('form-group');
+                featureContainer.innerHTML = featureHtml;
+
+                container.appendChild(featureContainer);
+            });
+        });
+    </script>
+
+{% endblock %}
