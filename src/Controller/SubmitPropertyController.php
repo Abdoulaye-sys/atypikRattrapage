@@ -27,7 +27,7 @@ class SubmitPropertyController extends AbstractController
 
             if ($uploadedFile) {
                 // Assurez-vous que le dossier d'upload existe
-                $uploadDirectory = $this->getParameter('kernel.project_dir') . '/uploads/images';
+                $uploadDirectory = $this->getParameter('kernel.project_dir') . '/public/images';
                 if (!file_exists($uploadDirectory)) {
                     mkdir($uploadDirectory, 0777, true);
                 }
