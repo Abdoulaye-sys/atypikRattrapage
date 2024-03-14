@@ -36,8 +36,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $adress = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $types = null;
 
     public function getId(): ?int
     {
@@ -145,15 +143,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getTypes(): ?string
-    {
-        return $this->types;
-    }
 
-    public function setTypes(string $types): static
-    {
-        $this->types = $types;
-
-        return $this;
-    }
 }
