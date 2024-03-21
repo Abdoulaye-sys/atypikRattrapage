@@ -7,14 +7,14 @@
 {% include 'shared/header.html.twig'%}
 
 <!-- Ajout de la bannière de cookies -->
-    <div id="cookieConsent" class="alert alert-info cookie-banner fixed-bottom mb-0 rounded-0">
-        <div class="container text-center">
-            Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site.
-            <button class="btn btn-sm btn-primary accept-btn">J'accepte</button>
-            <a href="{{ path('app_politique') }}" class="btn btn-sm btn-link">En savoir plus</a>
-        </div>
+<div id="cookieConsent" class="alert alert-info cookie-banner fixed-bottom mb-0 rounded-0">
+    <div class="container text-center">
+        Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site.
+        <button class="btn btn-sm btn-primary accept-btn mr-2">J'accepte</button>
+        <a href="{{ path('app_politique') }}" class="btn btn-sm btn-link">En savoir plus</a>
+        <button class="btn btn-sm btn-secondary cancel-btn ml-2">Annuler</button>
     </div>
-
+</div>
 {# Banner Start #}
 <div class="overlay-black w-100 slider-banner1 position-relative" style="background-image: url('../public/images/banner/rshmpg.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
     <div class="container h-100">
@@ -206,6 +206,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         var cookieBanner = document.getElementById('cookieConsent');
         var acceptButton = cookieBanner.querySelector('.accept-btn');
+        var cancelButton = cookieBanner.querySelector('.cancel-btn');
 
         // Fonction pour masquer la bannière de cookies
         function hideCookieBanner() {
@@ -218,6 +219,15 @@
             // ...
 
             // Masquer la bannière après le clic
+            hideCookieBanner();
+        });
+
+        // Ajouter un gestionnaire d'événement pour le clic sur le bouton "Annuler"
+        cancelButton.addEventListener('click', function () {
+            // Action à effectuer en cas d'annulation (par exemple, revenir en arrière, afficher un message, etc.)
+            // ...
+
+            // Masquer la bannière après le clic sur "Annuler"
             hideCookieBanner();
         });
 
