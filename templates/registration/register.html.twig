@@ -37,6 +37,7 @@
                             {# Ajouter le widget reCAPTCHA #}
                             <div class="form-group">
                                 <div class="g-recaptcha" data-sitekey="6LeeTaApAAAAACfApD8al33jy2o1U7eLzeOOq6q8"></div>
+                                <input type="hidden" id="recaptchaToken" name="recaptchaToken" value="">
                             </div>
                             <button class="btn btn-success" name="reg" value="Register" type="submit">Inscription</button>
                         {{ form_end(registrationForm) }}
