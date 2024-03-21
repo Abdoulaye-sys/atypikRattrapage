@@ -5,19 +5,19 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\Authenticator;
+use App\Service\RecaptchaService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, Authenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, Authenticator $authenticator, EntityManagerInterface $entityManager, RecaptchaService $recaptchaService): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -25,23 +25,18 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Vérification du reCAPTCHA
-            $recaptcha = $request->request->get('g-recaptcha-response');
-            $client = new \GuzzleHttp\Client();
-            $response = $client->post('https://www.google.com/recaptcha/enterprise.js?render=6LeeTaApAAAAACfApD8al33jy2o1U7eLzeOOq6q8', [
-                'form_params' => array(
-                    'secret' => '6LeeTaApAAAAACfApD8al33jy2o1U7eLzeOOq6q8',
-                    'response' => $recaptcha
-                )
-            ]);
-            $result = json_decode($response->getBody()->getContents());
+            $recaptchaToken = $request->request->get('g-recaptcha-response');
+            $recaptchaSiteKey = '6LeeTaApAAAAACfApD8al33jy2o1U7eLzeOOq6q8';
+            $project = 'my-project-4254-1711028852980';
+            $action = 'REGISTER';
 
-            if (!$result->success) {
-                // Le reCAPTCHA n'est pas valide
-                // Gérer l'erreur ici (par exemple, rediriger l'utilisateur avec un message d'erreur)
+            try {
+                $recaptchaService->createAssessment($recaptchaSiteKey, $recaptchaToken, $project, $action);
+            } catch (\Exception $e) {
                 return $this->redirectToRoute('app_register', ['error' => 'Le reCAPTCHA n\'a pas été validé. Veuillez réessayer.']);
             }
 
-            // encode the plain password
+            // Encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -51,7 +46,8 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+
+            // Do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(
                 $user,
