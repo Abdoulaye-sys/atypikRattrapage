@@ -17,25 +17,14 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, Authenticator $authenticator, EntityManagerInterface $entityManager, RecaptchaService $recaptchaService): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, Authenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Vérification du reCAPTCHA
-            $recaptchaToken = $request->request->get('g-recaptcha-response');
-            $recaptchaSiteKey = '6LeeTaApAAAAACfApD8al33jy2o1U7eLzeOOq6q8';
-            $project = 'my-project-4254-1711028852980';
-            $action = 'REGISTER';
-
-            try {
-                $recaptchaService->createAssessment($recaptchaSiteKey, $recaptchaToken, $project, $action);
-            } catch (\Exception $e) {
-                return $this->redirectToRoute('app_register', ['error' => 'Le reCAPTCHA n\'a pas été validé. Veuillez réessayer.']);
-            }
-
+       
             // Encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
