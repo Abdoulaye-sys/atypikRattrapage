@@ -34,6 +34,10 @@
                             <div class="form-group">
                                 {{ form_row(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Votre Mot de Passe*'}}) }}
                             </div>
+                            {# Ajouter le widget reCAPTCHA #}
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="6LeeTaApAAAAACfApD8al33jy2o1U7eLzeOOq6q8"></div>
+                            </div>
                             <button class="btn btn-success" name="reg" value="Register" type="submit">Inscription</button>
                         {{ form_end(registrationForm) }}
 

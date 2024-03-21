@@ -13,6 +13,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
+
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
@@ -23,6 +24,23 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Vérification du reCAPTCHA
+            $recaptcha = $request->request->get('g-recaptcha-response');
+            $client = new \GuzzleHttp\Client();
+            $response = $client->post('https://www.google.com/recaptcha/enterprise.js?render=6LeeTaApAAAAACfApD8al33jy2o1U7eLzeOOq6q8', [
+                'form_params' => array(
+                    'secret' => '6LeeTaApAAAAACfApD8al33jy2o1U7eLzeOOq6q8',
+                    'response' => $recaptcha
+                )
+            ]);
+            $result = json_decode($response->getBody()->getContents());
+
+            if (!$result->success) {
+                // Le reCAPTCHA n'est pas valide
+                // Gérer l'erreur ici (par exemple, rediriger l'utilisateur avec un message d'erreur)
+                return $this->redirectToRoute('app_register', ['error' => 'Le reCAPTCHA n\'a pas été validé. Veuillez réessayer.']);
+            }
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
