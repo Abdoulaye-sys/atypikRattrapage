@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{# <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,24 +9,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js"></script>
   <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeeTaApAAAAACfApD8al33jy2o1U7eLzeOOq6q8"></script>
 </head>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/public/sw.js')
-                .then(function(registration) {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                })
-                .catch(function(error) {
-                    console.error('Service Worker registration failed:', error);
-                });
-        }
-    </script>
     {% block stylesheets %}
     {% endblock %}
     {% block javascripts %}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {% endblock %}
 </head>
-<body>
-    {% block body %}{% endblock %}
-</body>
-</html>
+
+ #}
